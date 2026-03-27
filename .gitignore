@@ -1,176 +1,218 @@
 # ============================================================
-#  .gitignore — Python Project (Windows + VSCode)
-#  Best practices: https://git-scm.com/docs/gitignore
+
+# .gitignore — Molecular Dynamics Python Project
+
 # ============================================================
 
-
-# ------------------------------------------------------------
-# Python
 # ------------------------------------------------------------
 
-# Bytecode / cache
-__pycache__/
+# Python cache / bytecode
+
+# ------------------------------------------------------------
+
+**pycache**/
 *.py[cod]
 *$py.class
-*.pyo
 
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
-*.egg
-MANIFEST
-.eggs/
-wheels/
-pip-wheel-metadata/
+# ------------------------------------------------------------
 
-# Virtual environments (tutti i nomi comuni)
+# Virtual environments
+
+# ------------------------------------------------------------
+
 .venv/
 venv/
 env/
 ENV/
-.env/
 virtualenv/
+.env/
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+# ------------------------------------------------------------
 
-# Unit test / coverage
+# Python packaging
+
+# ------------------------------------------------------------
+
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+pip-wheel-metadata/
+wheels/
+MANIFEST
+
+# ------------------------------------------------------------
+
+# Testing / coverage
+
+# ------------------------------------------------------------
+
+.pytest_cache/
 .tox/
 .nox/
 .coverage
 .coverage.*
-htmlcov/
-.pytest_cache/
-.cache/
-nosetests.xml
 coverage.xml
-*.cover
-*.py,cover
+htmlcov/
 
-# Type checkers
+# ------------------------------------------------------------
+
+# Type checking / linters
+
+# ------------------------------------------------------------
+
 .mypy_cache/
-.dmypy.json
-dmypy.json
 .pyre/
 .pytype/
 .ruff_cache/
+.dmypy.json
+dmypy.json
 
-# Jupyter Notebook
+# ------------------------------------------------------------
+
+# Jupyter
+
+# ------------------------------------------------------------
+
 .ipynb_checkpoints
 *.ipynb_checkpoints/
 
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv / pipenv / poetry
-.python-version
-Pipfile.lock
-poetry.lock        # ← rimuovi questa riga se vuoi versionare il lock file (consigliato)
-
-# Sphinx documentation
-docs/_build/
-docs/_autosummary/
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Translations
-*.mo
-*.pot
-
-# Celery
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath
-*.sage.py
-
-# Scrapy
-.scrapy
-
-
 # ------------------------------------------------------------
-# Environment & Secrets — CRITICO: non committare mai segreti
+
+# Environment / secrets
+
 # ------------------------------------------------------------
 
 .env
 .env.*
-!.env.example          # ← eccezione: il template è versionato
+!.env.example
+
 *.pem
 *.key
 *.p12
 *.pfx
+
 secrets.json
 secrets.yaml
 secrets.yml
 *_secret*
 *_secrets*
-config/local.py
-config/local.yaml
-
 
 # ------------------------------------------------------------
-# Database & Data files
+
+# Databases
+
 # ------------------------------------------------------------
 
 *.db
 *.sqlite
 *.sqlite3
-*.sql
-*.csv         # rimuovi se vuoi versionare i dataset
-*.parquet
+
+# ============================================================
+
+# Molecular Dynamics — Simulation Outputs
+
+# ============================================================
+
+# trajectories
+
+*.xyz
+*.traj
+*.lammpstrj
+*.dump
+*.dcd
+*.xtc
+*.trr
+*.gro
+*.pdb
+
+# binary trajectory formats
+
 *.h5
 *.hdf5
-data/raw/
-data/processed/
-data/external/
-
 
 # ------------------------------------------------------------
+
+# Scientific data
+
+# ------------------------------------------------------------
+
+*.npy
+*.npz
+*.dat
+*.out
+
+# ------------------------------------------------------------
+
+# Simulation directories
+
+# ------------------------------------------------------------
+
+trajectories/
+results/
+checkpoints/
+data/
+runs/
+
+# ------------------------------------------------------------
+
 # Logs
+
 # ------------------------------------------------------------
 
 *.log
 logs/
-*.log.*
 log/
 
+# ------------------------------------------------------------
+
+# Plots and figures (generated)
 
 # ------------------------------------------------------------
+
+plots/
+figures/
+*.png
+*.pdf
+*.svg
+
+# ------------------------------------------------------------
+
 # VSCode
+
 # ------------------------------------------------------------
 
 .vscode/*
-!.vscode/settings.json        # ← mantieni le impostazioni condivise del progetto
-!.vscode/extensions.json      # ← consigliato per il team
-!.vscode/launch.json          # ← configurazioni di debug condivise
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
 *.code-workspace
 
+# ------------------------------------------------------------
+
+# JetBrains IDEs
 
 # ------------------------------------------------------------
+
+.idea/
+
+# ------------------------------------------------------------
+
 # Windows
+
 # ------------------------------------------------------------
 
 Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
 Desktop.ini
 $RECYCLE.BIN/
 *.lnk
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-
 
 # ------------------------------------------------------------
-# macOS (se lavori in team cross-platform)
+
+# macOS
+
 # ------------------------------------------------------------
 
 .DS_Store
@@ -180,9 +222,10 @@ $RECYCLE.BIN/
 .Spotlight-V100
 .Trashes
 
-
 # ------------------------------------------------------------
-# Misc
+
+# Temporary files
+
 # ------------------------------------------------------------
 
 *.tmp
@@ -191,4 +234,3 @@ $RECYCLE.BIN/
 *.swp
 *.swo
 *~
-.idea/               # JetBrains IDEs
