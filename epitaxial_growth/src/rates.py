@@ -7,7 +7,7 @@ from __future__ import annotations
 import numpy as np
 
 import config
-from lattice import count_neighbors, get_neighbors
+from lattice import count_neighbors
 
 
 
