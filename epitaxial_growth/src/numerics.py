@@ -141,16 +141,24 @@ def kmc_step(
 
         nr = (r - 1) % L
         if lattice[nr, c] == 0:
-            free_r[n_free] = nr;  free_c[n_free] = c;  n_free += 1
+            free_r[n_free] = nr
+            free_c[n_free] = c
+            n_free += 1
         nr = (r + 1) % L
         if lattice[nr, c] == 0:
-            free_r[n_free] = nr;  free_c[n_free] = c;  n_free += 1
+            free_r[n_free] = nr
+            free_c[n_free] = c
+            n_free += 1
         nc2 = (c - 1) % L
         if lattice[r, nc2] == 0:
-            free_r[n_free] = r;   free_c[n_free] = nc2; n_free += 1
+            free_r[n_free] = r
+            free_c[n_free] = nc2
+            n_free += 1
         nc2 = (c + 1) % L
         if lattice[r, nc2] == 0:
-            free_r[n_free] = r;   free_c[n_free] = nc2; n_free += 1
+            free_r[n_free] = r
+            free_c[n_free] = nc2
+            n_free += 1
 
         if n_free > 0:
             d   = np.random.randint(0, n_free)

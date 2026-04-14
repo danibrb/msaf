@@ -4,6 +4,7 @@ Entry point for the KMC epitaxial growth simulation of a 2D Ag monolayer.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import time as _time
 
 import config
 from lattice import initialise_lattice, coverage
@@ -53,7 +54,7 @@ print(f"  Saved : {_path_init}\n")
 # 4. Warm up Numba (first call triggers JIT compilation, not counted in timing)
 
 print("  Warming up Numba JIT compiler (first-call compilation) ...")
-import time as _time
+
 _t0 = _time.perf_counter()
 _dummy = initialise_lattice(np.random.default_rng(0))
 run(_dummy, n_deposit=1, snapshot_every=1)   # single-step warm-up
