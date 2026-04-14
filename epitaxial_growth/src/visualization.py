@@ -1,11 +1,5 @@
 """
-visualization.py
-----------------
 Plotting utilities for the KMC epitaxial growth simulation.
-
-Provides:
-    plot_lattice  – render a single L × L occupation snapshot as an image.
-    plot_coverage – plot surface coverage θ(t) over simulation time.
 """
 
 from __future__ import annotations

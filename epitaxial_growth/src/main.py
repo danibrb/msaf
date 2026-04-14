@@ -1,20 +1,5 @@
 """
-main.py
--------
 Entry point for the KMC epitaxial growth simulation of a 2D Ag monolayer.
-
-This file contains NO function definitions. All logic is executed sequentially
-at module level. Helper functions live in their respective modules:
-    config.py       - physical parameters and paths
-    lattice.py      - grid utilities
-    numerics.py     - Numba JIT kernels
-    rates.py        - TST rate constants
-    kmc.py          - KMC driver (tqdm progress bar)
-    output.py       - diagnostics, snapshot mosaic, coverage plots
-    visualization.py- matplotlib wrappers
-
-Usage (from the src/ folder):
-    python main.py
 """
 
 import numpy as np

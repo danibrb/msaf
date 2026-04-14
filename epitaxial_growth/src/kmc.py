@@ -1,17 +1,5 @@
 """
-kmc.py
-------
-Python driver for the Numba-JIT-compiled KMC engine.
-
-The computationally heavy work (neighbour counting, class classification,
-rate computation, random event selection, and lattice update) is entirely
-delegated to ``numerics.kmc_step``, compiled ahead-of-time by Numba.
-
-Occupied-site representation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Numba operates on two parallel int64 arrays ``occ_rows`` and ``occ_cols``
-(pre-allocated to L² entries) with a scalar counter ``n_occ``.
-Deposition appends at index n_occ (O(1)); diffusion updates in-place (O(1)).
+Python driver for the KMC engine.
 """
 
 from __future__ import annotations
@@ -29,26 +17,8 @@ def run(
     n_deposit:      int = config.N_DEPOSIT,
     snapshot_every: int = config.SNAPSHOT_EVERY,
 ) -> dict:
-    """Run the KMC deposition loop until *n_deposit* atoms have been deposited.
-
-    Parameters
-    ----------
-    lattice : np.ndarray
-        Initial L x L occupation array (int8, modified in place).
-    n_deposit : int
-        Number of atoms to deposit via the KMC flux before stopping.
-        Atoms placed during initialisation (config.N_INIT) are not counted.
-    snapshot_every : int
-        Record a lattice snapshot every this many deposition events.
-
-    Returns
-    -------
-    dict with keys
-        'time'        - np.ndarray of simulation times at checkpoints [s]
-        'coverage'    - np.ndarray of theta values at checkpoints
-        'n_deposited' - np.ndarray of cumulative deposition counts
-        'snapshots'   - list of np.ndarray lattice copies
-        'n_kmc_steps' - total KMC steps (deposits + diffusions)
+    """
+    Run the KMC deposition loop until n atoms have been deposited.
     """
     L   = config.L
     E0  = config.E0

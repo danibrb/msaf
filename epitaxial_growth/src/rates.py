@@ -1,28 +1,5 @@
 """
-rates.py
---------
 Computation of KMC event rates for the epitaxial growth simulation.
-
-The rate model follows Transition State Theory (TST), as derived in the
-lecture notes (Appendix, Eq. 101):
-
-    r_i = nu_0 * exp(-E_i / k_B T)
-
-The effective barrier for a diffusing adatom with n_pv occupied nearest
-neighbours in its current site is (Eq. 61 of the notes):
-
-    E_i = E0 + n_pv * Eb
-
-Atoms with n_pv >= 1 neighbours have higher barriers; at low T these
-processes become negligible, recovering the DDA limit.
-
-Events are partitioned into classes q = 0, 1, 2, 3, 4 (following Eq. 62-63):
-    q = 0..3 → diffusion of an adatom with q occupied neighbours
-    q = 4    → deposition (flux F, weight = L² * F)
-
-Within each diffusion class, all events have the same weight, so class
-selection followed by uniform draw within the class is exact and efficient
-(see §"Monte Carlo a tempo continuo" of the lecture notes).
 """
 
 from __future__ import annotations
@@ -38,18 +15,8 @@ from lattice import count_neighbors, get_neighbors
 
 
 def hopping_rate(n_pv: int) -> float:
-    """Arrhenius hopping rate for an adatom with *n_pv* occupied neighbours.
-
-    Parameters
-    ----------
-    n_pv : int
-        Number of occupied nearest-neighbour sites at the departure site.
-        Must be in {0, 1, 2, 3, 4}.
-
-    Returns
-    -------
-    float
-        Rate  r = nu_0 * exp(-(E0 + n_pv * Eb) / k_B T)  [events / s].
+    """
+    Hopping rate for an atom with n_pv occupied neighbours.
     """
     barrier = config.E0 + n_pv * config.EB
     return config.NU0 * np.exp(-barrier / (config.KB * config.T))
@@ -72,17 +39,8 @@ def compute_class_weights(
     lattice: np.ndarray,
     n_class: list[int],
 ) -> np.ndarray:
-    """Compute the total weight of each process class.
-
-    Each diffusion class q contains n_class[q] mobile atoms (those with
-    exactly q occupied neighbours).  Each such atom has 4 - q possible
-    target directions (moves to occupied sites are rejected a priori).
-
-    Class weights follow Eq. 62 of the lecture notes:
-        p_q = n_q * (4 - q) * nu_0 * exp(-(E0 + q*Eb) / k_B T)
-
-    plus the deposition class (q = 4):
-        p_4 = L² * F
+    """
+    Compute the total weight of each process class.
     """
     weights = np.empty(5, dtype=np.float64)
     for q in range(4):

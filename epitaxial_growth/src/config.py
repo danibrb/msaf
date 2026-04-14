@@ -1,6 +1,5 @@
 """
 Physical parameters for kinetic Monte Carlo simulation of epitaxial growth
-of a 2D silver monolayer on Ag(100)
 """
 
 from pathlib import Path
